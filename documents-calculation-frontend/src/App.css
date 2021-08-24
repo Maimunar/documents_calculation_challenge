@@ -1,0 +1,118 @@
+body {
+  color: white;
+  background-color: darkgray;
+  font-family: monospace;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 25px;
+  min-width: 300px;
+  margin: 70px 20%;
+  border: 2px solid black;
+  background-color: darkgreen;
+}
+
+.csv-file-container,
+.currency-container,
+.output-currency-container,
+.vat-filter-container {
+  display: flex;
+  flex-direction: column;
+  justify-self: center;
+  min-width: 270px;
+  border-bottom: 1px solid black;
+  padding: 10px 5vw 10px 5vw;
+  margin-bottom: 20px;
+}
+
+div label {
+  margin-bottom: 5px;
+}
+
+.currencies,
+.other-currency,
+.currency-value,
+.output-currency,
+.vat-filter {
+  background-color: darkgray;
+  margin-bottom: 5px;
+  border: 1px solid black;
+  padding: 5px;
+}
+
+.currencies:hover,
+.other-currency:hover,
+.currency-value:hover,
+.output-currency:hover,
+.vat-filter:hover {
+  border: 1px solid white;
+}
+
+.submit-btn,
+.add-currency-btn {
+  border: 1px solid black;
+  background-color: darkgray;
+  padding: 7px;
+  font-weight: bolder;
+  font-size: 1.2rem;
+  min-width: 40px;
+  align-self: center;
+}
+
+.submit-btn:hover,
+.add-currency-btn:hover {
+  border: 1px solid white;
+  color: white;
+  cursor: pointer;
+}
+
+.currency-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px dashed black;
+  margin: 10px 0px;
+}
+
+.vat-filter-label p {
+  display: inline;
+  color: lightgray;
+}
+
+.error-container {
+  position: absolute;
+  border: 1px solid white;
+  background-color: red;
+  text-align: center;
+  width: 350px;
+  left: 50%;
+  top: 10px;
+  margin-left: -175px;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.error-container:hover {
+  background-color: darkred;
+  cursor: pointer;
+}
+
+.hidden {
+  display: none;
+}
+
+.show {
+  display: block;
+}
+
+.csv-file-label,
+.csv-file-container p {
+  text-align: center;
+}
+.csv-file-label {
+  cursor: pointer;
+  font-weight: bolder;
+}
