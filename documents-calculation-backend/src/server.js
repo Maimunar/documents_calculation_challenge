@@ -7,7 +7,6 @@ const cors = require('cors')
 
 /*
   Main server file using express
-  Uses mongoose for the database and body-parser for request formatting
   PORT is saved in the .env file (in gitignore, check README)
 */
 const PORT = process.env.PORT || 8000

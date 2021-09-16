@@ -8,21 +8,31 @@ Clippings's invoices challenge using a NodeJS backend + React Frontend
 
 ## How to use
 
-1. Make sure you have set up your .env file correctly. An example .env file has only one property:
+1. `cd documents-calculation-backend`
+
+2. Make sure you have set up your .env file correctly. An example .env file has only one property:
 
 - PORT = 8000
 
-2. Make sure you install the needed dependencies. You can do so by running `npm install`
+3. Make sure you install the needed dependencies. You can do so by running `npm install`
 
-3. Run the API using `npm start`
+4. Run the API using `npm start`
 
-4. (Optional) Check API's availability by going on the uri `/api/healthCheck`
+5. (Optional) Check API's availability by going on the uri `/api/healthCheck`
 
 ## Testing
 
 You can run the unit/integration test suite by running `npm test`
 
 # Frontend
+
+## Setup
+
+1. `cd documents-calculation-frontend`
+
+2. `npm install`
+
+3. `npm start`
 
 ## Available Scripts
 
