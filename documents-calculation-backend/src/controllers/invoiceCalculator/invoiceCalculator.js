@@ -19,41 +19,28 @@ exports.parseData = (fileToRead) => {
 		// Library gives me a list of lists - I prefer working with objects
 		// This step could be skipped for performance reasons, but I value
 		// code readability more for this challenge
-		.reduce(
-			(prev, current) => [
-				...prev,
-				{
-					Customer: current[0],
-					"Vat number": current[1],
-					"Document number": current[2],
-					Type: current[3],
-					"Parent document": current[4],
-					Currency: current[5],
-					Total: current[6],
-				},
-			],
-			[]
-		);
+		.map((current) => ({
+			Customer: current[0],
+			"Vat number": current[1],
+			"Document number": current[2],
+			Type: current[3],
+			"Parent document": current[4],
+			Currency: current[5],
+			Total: current[6],
+		}));
 	// Invoice validation
-	let faultyInvoice = null;
-	const validated = invoices.every((invoice) => {
-		// If an invoice doesn't have a parent document
-		if (
-			invoice["Parent document"] === "" ||
-			// Or the parent document is included in the invoices' document number
-			invoices
-				.map((i) => i["Document number"])
-				.includes(invoice["Parent document"])
-		)
-			return true;
-		else {
-			faultyInvoice = invoice;
-			return false;
-		}
-	});
-	if (validated) return invoices;
-	else
-		throw `Invoice number ${faultyInvoice["Document number"]}'s Parent number is not available in the data you have provided.`;
+
+	let faultyInvoices = invoices.filter(
+		(invoice) =>
+			invoice["Parent document"] !== "" &&
+			!invoices.some(
+				(anotherInvoice) =>
+					anotherInvoice["Document number"] === invoice["Parent document"]
+			)
+	);
+	if (faultyInvoices.length > 0)
+		throw `Invoice number ${faultyInvoices[0]["Document number"]}'s Parent number is not available in the data you have provided.`;
+	return invoices;
 };
 
 // No real parsing, mostly validation
@@ -89,7 +76,7 @@ exports.getTotal = (data, currencies, outputCurrency, vat) => {
 			if (output[vatNum]["Customer"] === invoice["Customer"]) {
 				const currentMoney = output[vatNum]["Total"];
 				let addMoney = convertMoney(invoice, currencies, outputCurrency);
-				output[vatNum]["Total"] = currentMoney + addMoney;
+				output[vatNum]["Total"] = round(currentMoney + addMoney);
 			} else
 				throw "A customer can only have one VAT number - please make sure that is the case in your data";
 		} else {
@@ -108,6 +95,7 @@ exports.getTotal = (data, currencies, outputCurrency, vat) => {
 	}
 	if (listOutput.length === 0)
 		listOutput.push("None. Are you sure you provided the correct VAT Number?");
+	console.log(listOutput);
 	return listOutput;
 };
 
@@ -123,6 +111,8 @@ const convertMoney = (invoice, currencies, outputCurrency) => {
 
 	// We don't need a currency that defaults to 1, as we can just divide the input value
 	// By the input currency and use that as default
-	const value = Math.round((Total / inputAmp) * outputAmp * 100) / 100;
+	const value = round((Total / inputAmp) * outputAmp);
 	return Type == "2" ? -value : value;
 };
+
+const round = (num) => Math.round(num * 100) / 100;

@@ -31,9 +31,8 @@ export const Form = ({ setError, setResult }) => {
       .then((response) => {
         setResult(response.data);
       })
-      .catch((err) => setError(err.response.data));
-  };
-
+      .catch((err) => err?.response?.data ? setError (err.response.data) : setError(err.message));
+    };
   return (
     <form onSubmit={handleSubmit}>
       <div className="container">

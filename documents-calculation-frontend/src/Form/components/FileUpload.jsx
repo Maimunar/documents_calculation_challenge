@@ -6,10 +6,12 @@ export const FileUpload = ({ selectedFile, setSelectedFile, setError }) => {
   const handleClick = () => uploader.current.click();
   const handleUpload = (event) => {
     const file = event.target.files[0];
-    const csvRegex = /(\.csv)$/i;
-    if (csvRegex.exec(file.name)) setSelectedFile(file);
-    else setError("Please Upload a CSV File!");
-  };
+    if (file) {
+      const csvRegex = /(\.csv)$/i;
+      if (csvRegex.exec(file.name)) setSelectedFile(file);
+      else setError("Please Upload a CSV File!");  
+    }
+    };
   return (
     <div class="csv-file-container">
       <label
