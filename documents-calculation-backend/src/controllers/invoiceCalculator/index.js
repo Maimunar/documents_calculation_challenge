@@ -8,14 +8,14 @@ const { parseData, parseCurrencies, getTotal } = require("./invoiceCalculator");
     URI: /api/calculateInvoice
 */
 exports.calculateInvoice = (req, res) => {
-	try {
-		const data = parseData(req.file.buffer);
-		const { vat, outputCurrency, ...unvalidatedCurrencies } = req.body;
-		const currencies = parseCurrencies(unvalidatedCurrencies);
-		const total = getTotal(data, currencies, outputCurrency, vat);
-		res.send(total);
-	} catch (err) {
-		console.log(err);
-		res.status(400).send(err);
-	}
+  try {
+    const data = parseData(req.file.buffer);
+    const { vat, outputCurrency, ...unvalidatedCurrencies } = req.body;
+    const currencies = parseCurrencies(unvalidatedCurrencies);
+    const total = getTotal(data, currencies, outputCurrency, vat);
+    res.send(total);
+  } catch (err) {
+    console.log(err);
+    res.status(400).send(err);
+  }
 };

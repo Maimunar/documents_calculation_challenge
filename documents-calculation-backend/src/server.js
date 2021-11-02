@@ -1,30 +1,29 @@
-require('dotenv').config()
-import bodyParser from 'body-parser'
-import express from 'express'
-import routes from './routes'
+require("dotenv").config();
+import bodyParser from "body-parser";
+import express from "express";
+import routes from "./routes";
 
-const cors = require('cors')
+const cors = require("cors");
 
 /*
   Main server file using express
   PORT is saved in the .env file (in gitignore, check README)
 */
-const PORT = process.env.PORT || 8000
-const app = express()
+const PORT = process.env.PORT || 8000;
+const app = express();
 /*
     Middleware
 */
-app.use(cors())
-app.use(bodyParser.json())
+app.use(cors());
+app.use(bodyParser.json());
 /*
   Send the request to the router
 */
-app.use('/api', routes())
+app.use("/api", routes());
 
 /*
     Let the app listen on the suggested port
 */
-app.listen(PORT,
-  () => console.log(`Listening on port ${PORT}`))
+app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
 
-module.exports = app
+module.exports = app;

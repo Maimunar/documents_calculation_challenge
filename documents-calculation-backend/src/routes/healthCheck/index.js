@@ -1,9 +1,9 @@
-import express from 'express'
-import { healthCheck } from '../../controllers/healthCheck'
-const router = express.Router()
+import express from "express";
+import { healthCheck } from "../../controllers/healthCheck";
+const router = express.Router();
 
 module.exports = () => {
-    router.get('/', healthCheck)
+  router.get("/", healthCheck);
 
-    return router
-}
+  return router;
+};

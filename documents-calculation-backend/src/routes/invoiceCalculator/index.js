@@ -1,12 +1,12 @@
-import express from 'express'
-import { calculateInvoice } from '../../controllers/invoiceCalculator'
-const multer  = require('multer')
-const upload = multer({ storage: multer.memoryStorage() })
+import express from "express";
+import { calculateInvoice } from "../../controllers/invoiceCalculator";
+const multer = require("multer");
+const upload = multer({ storage: multer.memoryStorage() });
 
-const router = express.Router()
+const router = express.Router();
 
 module.exports = () => {
-    router.post('/', upload.single('csvFile'), calculateInvoice)
+  router.post("/", upload.single("csvFile"), calculateInvoice);
 
-    return router
-}
+  return router;
+};
