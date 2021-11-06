@@ -7,11 +7,11 @@ export const FileUpload = ({ selectedFile, setSelectedFile, setError }) => {
   const handleUpload = (event) => {
     const file = event.target.files[0];
     if (file) {
-      const csvRegex = /(\.csv)$/i;
+      const csvRegex = /(\.csv)$/i; //? Using a regex is not wrong it just makes the code harder to read since you can just do IndexOf for this check
       if (csvRegex.exec(file.name)) setSelectedFile(file);
-      else setError("Please Upload a CSV File!");  
+      else setError("Please Upload a CSV File!");
     }
-    };
+  };
   return (
     <div class="csv-file-container">
       <label

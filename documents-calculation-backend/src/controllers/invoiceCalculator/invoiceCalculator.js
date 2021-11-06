@@ -1,5 +1,6 @@
 import * as CSV from "csv-string";
 
+//? This seems like a utils.js file for your controller I would probably name it that. Would just make more sense, since the actual controller flow is still in the index,js
 /*
     The task requires a setData method, this, however, makes it a bit harder
     To make simultaneous requests possible, which is why I will use a parseData
@@ -15,6 +16,7 @@ exports.parseData = (fileToRead) => {
     // Parsing the CSV string
     .parse(String(fileToRead))
     // Removing the headers row (library doesnt do that for me)
+    //? You can try papaparse it has a lot of functionality including if you want a header row
     .slice(1)
     // Library gives me a list of lists - I prefer working with objects
     // This step could be skipped for performance reasons, but I value
